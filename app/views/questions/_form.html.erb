@@ -1,0 +1,34 @@
+<%= form_for(question) do |form| %>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="container">
+  <div class="form-group">
+    <label for="question_title">Title</label>
+    <input type="text" name="question[title]" class="form-control" id="question_title" placeholder="title">
+  </div>
+
+  <div class="form-group">
+    <label for="question_name">Name</label>
+    <input type="text" name="question[name]" class="form-control" id="question_name" placeholder="your-name">
+  </div>
+
+  <div class="form-group">
+    <label for="question_content">Content</label>
+    <textarea type="text" name="question[content]" class="form-control" id="question_content" cols="40" rows="5"></textarea>
+    <p class="help-block"></p>
+  </div>
+
+  <button type="submit" class="btn btn-default" name="commit">Create Question</button>
+</div>
+
+<% end %>

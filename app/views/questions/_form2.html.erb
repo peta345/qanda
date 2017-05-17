@@ -1,0 +1,26 @@
+<%= form_for(answer) do |f| %>
+  <% if answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul answer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+
+
+  <%= f.hidden_field :question_id, {value: answer.question_id} %>
+
+    <div class="form-group">
+      <label for="answer_name">Name</label>
+      <input type="text" name="answer[name]" class="form-control" id="asnwer_name" placeholder="your-name">
+    </div>
+
+    <div class="form-group">
+      <label for="answer_content">Content</label>
+      <textarea type="text" name="answer[content]" class="form-control" id="asnwer_content" cols="40" rows="5"></textarea>
+      <p class="help-block">※1200文字以内で書いてください</p>
+    </div>
+    <button type="submit" class="btn btn-default" name="commit">Create Answer</button>
+  <% end %>

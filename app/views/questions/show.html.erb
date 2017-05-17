@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <h1 class="jumbotron">Question</h1>
+
+
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2 class="panel-title"><%= @question.title %></h2>
+    </div>
+    <div class="panel-body">
+      <%= simple_format(@question.content) %>
+    </div>
+    <div class="panel-footer text-right">
+      <span class="your-name">By : <%= @question.name %></span>
+      <span class="<%= @question.finished ? 'finished' : 'not_finished' %>">
+        <%= @question.finished ? "Finished" : "Accepting" %>
+      </span>
+    </div>
+  </div>
+
+  <h2 class="jumbotron">Answer</h2>
+
+  <% if @question.answer.count == 0 %>
+    <p class="answer">No Answer</p>
+  <% else %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Answer</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= @question.answer.reverse_each do |re| %>
+        <tr>
+          <td><%= simple_format(re.content + '(' + re.name + ')' + '[' + re.created_at.to_s + ']') %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+
+
+  <% if @question.finished? == false %>
+    <div class="answer_form">
+      <h2 class="jumbotron">Your Answer</h2>
+      <%= render 'form2', answer: @answer %>
+    </div>
+  <% end %>
+
+<%= link_to 'Back', questions_path %>
+</div>

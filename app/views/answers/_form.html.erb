@@ -1,0 +1,51 @@
+<%= form_with(model: answer, local: true) do |form| %>
+  <% if answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+
+      <ul>
+      <% answer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label for="question_title">Name</label>
+    <input type="text" name="question[title]" class="form-control" id="question_title" placeholder="title">
+  </div>
+
+  <div class="form-group">
+    <label for="question_name">Name</label>
+    <input type="text" name="question[name]" class="form-control" id="question_name" placeholder="your-name">
+  </div>
+
+  <div class="form-group">
+    <label for="question_content">Content</label>
+    <textarea type="text" name="question[content]" class="form-control" id="question_content" cols="40" rows="5"></textarea>
+    <p class="help-block"></p>
+  </div>
+
+  <button type="submit" class="btn btn-default" name="commit">Create Answer</button>
+
+
+  <div class="field">
+    <%= form.label :question_id %>
+    <%= form.number_field :question_id, id: :answer_question_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, id: :answer_content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_area :name, id: :answer_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
